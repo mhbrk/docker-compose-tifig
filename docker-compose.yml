@@ -1,0 +1,13 @@
+version: '3'
+services:
+  tifig:
+    image: monostream/tifig:latest
+    volumes:
+      - /path/to/folder/with/HEIC-files:/HEIC
+    command: >
+      bash -c "cd /HEIC &&
+      for file in *.heic ;
+      do
+      echo $$file | xargs /tifig/build/tifig -v -p $$file $${file%.heic}.jpg ;
+      done"
+
